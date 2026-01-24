@@ -1,13 +1,2280 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
+      <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Abia Green Shuttle - Government Transportation Initiative</title>
     <!-- Favicon - Abia State Logo -->
     <link rel="icon" type="image/png" href="img/logo-removebg-preview.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* CSS Variables (like your Tailwind config) */
+        :root {
+            /* Primary Colors */
+            --primary: hsl(150, 60%, 22%);        /* Forest Green */
+            --primary-light: hsl(150, 45%, 35%);
+            --primary-foreground: hsl(40, 33%, 97%);
+            
+            /* Secondary Colors */
+            --secondary: hsl(43, 96%, 56%);       /* Gold */
+            --secondary-dark: hsl(43, 80%, 45%);
+            --secondary-foreground: hsl(150, 40%, 12%);
+            
+            /* Background & Text */
+            --background: hsl(40, 33%, 97%);
+            --foreground: hsl(150, 40%, 12%);
+            --card: hsl(0, 0%, 100%);
+            --card-foreground: hsl(150, 40%, 12%);
+            --muted: hsl(40, 20%, 92%);
+            --muted-foreground: hsl(150, 20%, 40%);
+            --border: hsl(40, 20%, 85%);
+            
+            /* Accent */
+            --accent: hsl(220, 60%, 25%);         /* Navy Blue */
+            --accent-foreground: hsl(40, 33%, 97%);
+            
+            /* Custom */
+            --cream-dark: hsl(40, 20%, 92%);
+            --radius: 0.5rem;
+        }
+        
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            width: 100%;
+            overflow-x: hidden;
+        }
+        
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--background);
+            color: var(--foreground);
+            line-height: 1.6;
+            width: 100%;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Mobile-first container */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        /* Enhanced Mobile Responsiveness */
+        @media (max-width: 768px) {
+            section {
+                padding: 50px 0;
+            }
+            
+            /* Fix any potential overflow issues */
+            img, video, iframe {
+                max-width: 100%;
+                height: auto;
+            }
+            
+            .container {
+                padding: 0 12px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 10px;
+            }
+            
+            section {
+                padding: 40px 0;
+            }
+        }
+        
+        /* Utility Classes */
+        .text-gradient-gold {
+            background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .bg-gradient-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 50%, var(--accent) 100%);
+        }
+        
+        .bg-gradient-gold {
+            background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+        }
+        
+        .shadow-government {
+            box-shadow: 0 4px 20px -4px rgba(26, 95, 35, 0.15), 
+                        0 8px 40px -8px rgba(26, 95, 35, 0.1);
+        }
+        
+        .shadow-gold {
+            box-shadow: 0 4px 20px -4px rgba(255, 193, 0, 0.4);
+        }
+        
+        .animate-pulse-glow {
+            animation: pulse-glow 2s infinite;
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; box-shadow: 0 0 20px rgba(255, 193, 0, 0.6); }
+        }
+        
+        /* Enhanced Animation Classes */
+        .animate-fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .animate-fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .animate-slide-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .animate-slide-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .animate-slide-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .animate-slide-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .animate-zoom-in {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .animate-zoom-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .animate-from-bottom {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .animate-from-bottom.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .animate-from-top {
+            opacity: 0;
+            transform: translateY(-50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .animate-from-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(26, 95, 35, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+            width: 100%;
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                height: 60px;
+            }
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        
+        .state-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .state-logo {
+            width: 36px;
+            height: 36px;
+            background-color: white;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 3px;
+        }
+        
+        @media (max-width: 768px) {
+            .state-logo {
+                width: 32px;
+                height: 32px;
+            }
+        }
+        
+        .state-logo-text {
+            font-weight: bold;
+            color: white;
+            font-size: 13px;
+            line-height: 1.2;
+        }
+        
+        .state-logo-text .abia {
+            color: var(--secondary);
+        }
+        
+        .state-logo-img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background-color: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px -4px rgba(255, 193, 0, 0.4);
+        }
+        
+        @media (max-width: 768px) {
+            .logo-icon {
+                width: 38px;
+                height: 38px;
+            }
+        }
+        
+        .logo-icon i {
+            color: var(--primary);
+            font-size: 20px;
+        }
+        
+        .logo-text h1 {
+            color: var(--primary-foreground);
+            font-size: 16px;
+            font-weight: bold;
+            line-height: 1.2;
+        }
+        
+        @media (max-width: 768px) {
+            .logo-text h1 {
+                font-size: 14px;
+            }
+        }
+        
+        .logo-text p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 11px;
+        }
+        
+        @media (max-width: 768px) {
+            .logo-text p {
+                font-size: 10px;
+            }
+        }
+        
+        .desktop-nav {
+            display: flex;
+            gap: 28px;
+        }
+        
+        @media (max-width: 1024px) {
+            .desktop-nav {
+                display: none;
+            }
+        }
+        
+        .desktop-nav a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: color 0.3s;
+        }
+        
+        .desktop-nav a:hover {
+            color: var(--secondary);
+        }
+        
+        .free-badge {
+            background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+            color: var(--primary);
+            font-weight: bold;
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 12px;
+            animation: pulse-glow 2s infinite;
+        }
+        
+        @media (max-width: 768px) {
+            .free-badge {
+                padding: 5px 12px;
+                font-size: 11px;
+            }
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--primary-foreground);
+            font-size: 22px;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 1024px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+        
+        /* Mobile Navigation */
+        .mobile-nav {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            background-color: var(--primary);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            transform: translateY(-100%);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-nav {
+                top: 60px;
+            }
+        }
+        
+        .mobile-nav.active {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .mobile-nav-container {
+            padding: 16px;
+        }
+        
+        .mobile-nav a {
+            display: block;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            padding: 12px 0;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 15px;
+        }
+        
+        .mobile-nav a:hover {
+            color: var(--secondary);
+        }
+        
+        .mobile-nav .free-badge {
+            margin-top: 16px;
+            text-align: center;
+        }
+        
+        /* Governor Section - Updated Design */
+        .governor-section {
+            background-color: white;
+            color: var(--foreground);
+            padding: 80px 0 60px;
+            margin-top: 70px;
+            text-align: center;
+            width: 100%;
+        }
+        
+        @media (max-width: 768px) {
+            .governor-section {
+                padding: 50px 0 40px;
+                margin-top: 60px;
+            }
+        }
+        
+        .governor-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .governor-image-container {
+            margin-bottom: 25px;
+        }
+        
+        .governor-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid var(--secondary);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            margin-bottom: 15px;
+            max-width: 100%;
+        }
+        
+        @media (max-width: 768px) {
+            .governor-image {
+                width: 160px;
+                height: 160px;
+                border-width: 6px;
+            }
+        }
+        
+        .governor-badge {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            font-weight: bold;
+            padding: 8px 24px;
+            border-radius: 20px;
+            font-size: 14px;
+            display: inline-block;
+            letter-spacing: 0.5px;
+        }
+        
+        @media (max-width: 768px) {
+            .governor-badge {
+                padding: 6px 20px;
+                font-size: 13px;
+            }
+        }
+        
+        .governor-info {
+            width: 100%;
+        }
+        
+        .governor-info h2 {
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+        
+        @media (max-width: 768px) {
+            .governor-info h2 {
+                font-size: 1.8rem;
+            }
+        }
+        
+        .governor-title {
+            font-size: 1.1rem;
+            color: var(--secondary-dark);
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .governor-title {
+                font-size: 1rem;
+                margin-bottom: 20px;
+            }
+        }
+        
+        .governor-info p {
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 16px;
+            text-align: left;
+            color: var(--foreground);
+        }
+        
+        @media (max-width: 768px) {
+            .governor-info p {
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+        }
+        
+        .governor-quote {
+            background-color: var(--cream-dark);
+            border-left: 4px solid var(--secondary);
+            padding: 22px;
+            margin: 25px 0;
+            font-style: italic;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            text-align: left;
+            border-radius: 0 8px 8px 0;
+            position: relative;
+        }
+        
+        @media (max-width: 768px) {
+            .governor-quote {
+                padding: 18px;
+                font-size: 1rem;
+                margin: 20px 0;
+            }
+        }
+        
+        .governor-quote::before {
+            content: '"';
+            font-size: 3rem;
+            color: var(--secondary);
+            position: absolute;
+            top: -15px;
+            left: 12px;
+            font-family: Georgia, serif;
+        }
+        
+        .governor-signature {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-top: 25px;
+            text-align: right;
+            font-style: italic;
+        }
+        
+        @media (max-width: 768px) {
+            .governor-signature {
+                font-size: 1rem;
+                margin-top: 20px;
+            }
+        }
+        
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(to bottom, rgba(26, 95, 35, 0.8), rgba(26, 95, 35, 0.6)), 
+                              url('img/Copilot_20260114_141834.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+            text-align: center;
+            padding-top: 80px;
+            width: 100%;
+            padding: 0 20px;
+        }
+        
+        .government-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: rgba(255, 193, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 193, 0, 0.3);
+            border-radius: 999px;
+            padding: 8px 20px;
+            margin-bottom: 28px;
+        }
+        
+        @media (max-width: 768px) {
+            .government-badge {
+                padding: 6px 16px;
+                margin-bottom: 24px;
+            }
+        }
+        
+        .government-badge .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--secondary);
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .government-badge span {
+            color: var(--secondary);
+            font-weight: 500;
+            font-size: 13px;
+        }
+        
+        @media (max-width: 768px) {
+            .government-badge span {
+                font-size: 12px;
+            }
+        }
+        
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: bold;
+            color: var(--primary-foreground);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 28px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+        
+        .free-banner {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+            color: var(--primary);
+            font-weight: bold;
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+            padding: 14px 28px;
+            border-radius: var(--radius);
+            box-shadow: 0 4px 20px -4px rgba(255, 193, 0, 0.4);
+            margin-bottom: 40px;
+            animation: pulse-glow 2s infinite;
+        }
+        
+        @media (max-width: 768px) {
+            .free-banner {
+                padding: 12px 24px;
+                margin-bottom: 32px;
+                font-size: 1.1rem;
+            }
+        }
+        
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            width: 100%;
+            padding: 0 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .quick-stats {
+                grid-template-columns: 1fr;
+                gap: 16px;
+                padding: 0 10px;
+                margin-bottom: 32px;
+            }
+        }
+        
+        .stat-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .stat-card {
+                padding: 16px;
+            }
+        }
+        
+        .stat-card i {
+            font-size: 28px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .stat-card i {
+                font-size: 24px;
+                margin-bottom: 8px;
+            }
+        }
+        
+        .stat-card p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 13px;
+            margin-bottom: 6px;
+        }
+        
+        @media (max-width: 768px) {
+            .stat-card p {
+                font-size: 12px;
+            }
+        }
+        
+        .stat-card .value {
+            color: var(--primary-foreground);
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        @media (max-width: 768px) {
+            .stat-card .value {
+                font-size: 16px;
+            }
+        }
+        
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--secondary);
+            color: var(--primary);
+            font-weight: bold;
+            padding: 14px 28px;
+            border-radius: var(--radius);
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px -4px rgba(255, 193, 0, 0.4);
+            font-size: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .cta-button {
+                padding: 12px 24px;
+                font-size: 14px;
+            }
+        }
+        
+        .cta-button:hover {
+            background-color: rgba(255, 193, 0, 0.9);
+            gap: 12px;
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .scroll-indicator-inner {
+            width: 22px;
+            height: 36px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 999px;
+            display: flex;
+            justify-content: center;
+            padding-top: 6px;
+        }
+        
+        .scroll-indicator-dot {
+            width: 4px;
+            height: 10px;
+            background-color: var(--secondary);
+            border-radius: 999px;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-5px);}
+            60% {transform: translateY(-3px);}
+        }
+        
+        /* Section Titles */
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+            width: 100%;
+        }
+        
+        @media (max-width: 768px) {
+            .section-header {
+                margin-bottom: 40px;
+            }
+        }
+        
+        .section-badge {
+            display: inline-block;
+            background-color: rgba(26, 95, 35, 0.1);
+            color: var(--primary);
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 13px;
+            margin-bottom: 14px;
+        }
+        
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: bold;
+            margin-bottom: 14px;
+        }
+        
+        .section-description {
+            color: var(--muted-foreground);
+            font-size: 1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 768px) {
+            .section-description {
+                font-size: 0.95rem;
+                padding: 0 10px;
+            }
+        }
+        
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        @media (max-width: 1024px) {
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+        
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-top: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .about-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .stat-box {
+            text-align: center;
+            padding: 18px;
+            border-radius: var(--radius);
+        }
+        
+        @media (max-width: 768px) {
+            .stat-box {
+                padding: 14px;
+            }
+        }
+        
+        .stat-box.primary {
+            background-color: rgba(26, 95, 35, 0.05);
+        }
+        
+        .stat-box.secondary {
+            background-color: rgba(255, 193, 0, 0.1);
+        }
+        
+        .stat-box.accent {
+            background-color: rgba(13, 46, 77, 0.1);
+        }
+        
+        .stat-value {
+            font-size: 1.7rem;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        
+        @media (max-width: 768px) {
+            .stat-value {
+                font-size: 1.5rem;
+            }
+        }
+        
+        .stat-box.primary .stat-value {
+            color: var(--primary);
+        }
+        
+        .stat-box.secondary .stat-value {
+            color: var(--secondary-foreground);
+        }
+        
+        .stat-box.accent .stat-value {
+            color: var(--accent-foreground);
+        }
+        
+        .stat-label {
+            font-size: 13px;
+            color: var(--muted-foreground);
+        }
+        
+        @media (max-width: 768px) {
+            .stat-label {
+                font-size: 12px;
+            }
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px;
+        }
+        
+        @media (max-width: 768px) {
+            .values-grid {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+        }
+        
+        .value-card {
+            background-color: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 22px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px -4px rgba(26, 95, 35, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .value-card {
+                padding: 18px;
+            }
+        }
+        
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px -4px rgba(26, 95, 35, 0.15);
+        }
+        
+        .value-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 50%, var(--accent) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+        
+        @media (max-width: 768px) {
+            .value-icon {
+                width: 48px;
+                height: 48px;
+                margin-bottom: 14px;
+            }
+        }
+        
+        .value-icon i {
+            font-size: 26px;
+            color: var(--secondary);
+        }
+        
+        @media (max-width: 768px) {
+            .value-icon i {
+                font-size: 24px;
+            }
+        }
+        
+        .value-card h3 {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        @media (max-width: 768px) {
+            .value-card h3 {
+                font-size: 1.1rem;
+            }
+        }
+        
+        .value-card p {
+            color: var(--muted-foreground);
+            font-size: 0.95rem;
+        }
+        
+        /* NEW: Bus Features Section */
+        .bus-features-section {
+            background-color: var(--cream-dark);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        
+        @media (max-width: 480px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .feature-card {
+            background-color: var(--card);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        @media (max-width: 768px) {
+            .feature-card {
+                padding: 20px;
+            }
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+        }
+        
+        .feature-icon i {
+            font-size: 28px;
+            color: white;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .feature-card p {
+            color: var(--muted-foreground);
+            font-size: 0.95rem;
+        }
+        
+        /* Routes Section */
+        .routes-section {
+            background-color: var(--background);
+            width: 100%;
+        }
+        
+        .routes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+            width: 100%;
+        }
+        
+        .route-card {
+            background-color: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.3s;
+            width: 100%;
+        }
+        
+        @media (max-width: 768px) {
+            .route-card {
+                padding: 20px;
+            }
+        }
+        
+        .route-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px -4px rgba(26, 95, 35, 0.15);
+        }
+        
+        .route-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+        
+        .route-from, .route-to {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+        }
+        
+        .route-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .route-dot.from {
+            background-color: var(--secondary);
+        }
+        
+        .route-dot.to {
+            background-color: var(--primary);
+        }
+        
+        .route-arrow {
+            color: var(--muted-foreground);
+            font-size: 18px;
+            margin: 0 10px;
+        }
+        
+        .distance-badge {
+            display: inline-block;
+            background-color: rgba(255, 193, 0, 0.15);
+            color: var(--secondary-foreground);
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 999px;
+            margin-bottom: 12px;
+        }
+        
+        .stops-label {
+            font-size: 12px;
+            color: var(--muted-foreground);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .stops-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        
+        .stop-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 11px;
+            color: var(--muted-foreground);
+            background-color: var(--muted);
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+        
+        .stop-badge i {
+            font-size: 9px;
+        }
+        
+        /* Schedule Section */
+        .schedule-section {
+            background-color: var(--primary);
+            color: var(--primary-foreground);
+            width: 100%;
+        }
+        
+        .schedule-section .section-badge {
+            background-color: rgba(255, 193, 0, 0.2);
+            color: var(--secondary);
+        }
+        
+        .schedule-section .section-title,
+        .schedule-section .section-description {
+            color: var(--primary-foreground);
+        }
+        
+        .schedule-section .section-description {
+            opacity: 0.9;
+        }
+        
+        .schedule-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            width: 100%;
+        }
+        
+        @media (max-width: 1024px) {
+            .schedule-content {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+        }
+        
+        .schedule-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            padding: 28px;
+            width: 100%;
+        }
+        
+        @media (max-width: 768px) {
+            .schedule-card {
+                padding: 22px;
+            }
+        }
+        
+        .schedule-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 22px;
+        }
+        
+        .schedule-header i {
+            font-size: 22px;
+            color: var(--secondary);
+        }
+        
+        .schedule-header h3 {
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .schedule-header h3 {
+                font-size: 1.2rem;
+            }
+        }
+        
+        .schedule-day {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius);
+            margin-bottom: 10px;
+            width: 100%;
+        }
+        
+        .day-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .day-status {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        
+        .status-operational {
+            background-color: #4ade80;
+        }
+        
+        .status-limited {
+            background-color: #fbbf24;
+        }
+        
+        .day-name {
+            font-weight: 600;
+            font-size: 15px;
+        }
+        
+        .limited-badge {
+            background-color: rgba(251, 191, 36, 0.2);
+            color: #fbbf24;
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 999px;
+            margin-right: 6px;
+        }
+        
+        .day-hours {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 13px;
+        }
+        
+        .time-slot {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 14px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius);
+            margin-bottom: 14px;
+            width: 100%;
+        }
+        
+        .time-slot-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: rgba(255, 193, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .time-slot-icon i {
+            font-size: 22px;
+            color: var(--secondary);
+        }
+        
+        .time-slot-content h4 {
+            font-weight: bold;
+            margin-bottom: 4px;
+            font-size: 15px;
+        }
+        
+        .time-slot-content p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 13px;
+            margin-bottom: 6px;
+        }
+        
+        .frequency-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: bold;
+            padding: 3px 10px;
+            border-radius: 999px;
+        }
+        
+        .notice {
+            background-color: rgba(255, 193, 0, 0.1);
+            border: 1px solid rgba(255, 193, 0, 0.3);
+            border-radius: var(--radius);
+            padding: 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-top: 22px;
+            width: 100%;
+        }
+        
+        .notice i {
+            color: var(--secondary);
+            font-size: 18px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        
+        .notice p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        /* NEW: Infrastructure Section */
+        .infrastructure-section {
+            background-color: var(--cream-dark);
+        }
+        
+        .infrastructure-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .infrastructure-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .infrastructure-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .infrastructure-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+        }
+        
+        @media (max-width: 768px) {
+            .infrastructure-image {
+                height: 180px;
+                font-size: 40px;
+            }
+        }
+        
+        .infrastructure-content {
+            padding: 24px;
+        }
+        
+        @media (max-width: 768px) {
+            .infrastructure-content {
+                padding: 20px;
+            }
+        }
+        
+        .infrastructure-content h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .infrastructure-content p {
+            color: var(--muted-foreground);
+            margin-bottom: 16px;
+        }
+        
+        .infrastructure-stats {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid var(--border);
+            padding-top: 16px;
+        }
+        
+        @media (max-width: 480px) {
+            .infrastructure-stats {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+        
+        .infrastructure-stat {
+            text-align: center;
+        }
+        
+        .infrastructure-stat .value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .infrastructure-stat .label {
+            font-size: 12px;
+            color: var(--muted-foreground);
+        }
+        
+        /* Terminals Section */
+        .terminals-section {
+            background-color: var(--background);
+            width: 100%;
+        }
+        
+        .terminals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+            width: 100%;
+        }
+        
+        @media (max-width: 768px) {
+            .terminals-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .terminals-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .terminal-card {
+            background-color: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s;
+            width: 100%;
+        }
+        
+        .terminal-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px -4px rgba(26, 95, 35, 0.15);
+        }
+        
+        .terminal-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 50%, var(--accent) 100%);
+            padding: 22px;
+        }
+        
+        @media (max-width: 768px) {
+            .terminal-header {
+                padding: 18px;
+            }
+        }
+        
+        .terminal-type {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 4px 10px;
+            border-radius: 999px;
+            margin-bottom: 10px;
+        }
+        
+        .type-major {
+            background-color: var(--secondary);
+            color: var(--primary);
+        }
+        
+        .type-regional {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: var(--primary-foreground);
+        }
+        
+        .type-stop {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .terminal-title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+        
+        .terminal-card h3 {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-foreground);
+        }
+        
+        @media (max-width: 768px) {
+            .terminal-card h3 {
+                font-size: 1.1rem;
+            }
+        }
+        
+        .terminal-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .terminal-icon i {
+            font-size: 22px;
+            color: var(--secondary);
+        }
+        
+        .terminal-location {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 13px;
+        }
+        
+        .terminal-body {
+            padding: 22px;
+        }
+        
+        @media (max-width: 768px) {
+            .terminal-body {
+                padding: 18px;
+            }
+        }
+        
+        .terminal-routes {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+        
+        .terminal-routes i {
+            color: var(--secondary);
+            font-size: 15px;
+        }
+        
+        .terminal-routes span {
+            font-weight: 500;
+            font-size: 15px;
+        }
+        
+        .facilities-label {
+            font-size: 12px;
+            color: var(--muted-foreground);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .facilities-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .facility-badge {
+            font-size: 11px;
+            background-color: var(--muted);
+            color: var(--muted-foreground);
+            padding: 4px 10px;
+            border-radius: 999px;
+        }
+        
+        /* Testimonials Section */
+        .testimonials-section {
+            background-color: var(--cream-dark);
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+        
+        .testimonials-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><path fill="%231a5f23" fill-opacity="0.03" d="M37.9,-65.3C49.5,-58.8,59.7,-49.2,67.9,-37.2C76.1,-25.1,82.3,-10.6,81.5,3.4C80.8,17.4,73.1,30.9,63.1,41.9C53.1,53,40.8,61.6,27.7,67.9C14.5,74.2,0.7,78.2,-13.8,77.8C-28.3,77.4,-43.4,72.6,-54.7,62.5C-66.1,52.5,-73.6,37.1,-77.8,20.5C-82.1,3.9,-83.1,-13.9,-77.9,-29.8C-72.6,-45.8,-61.1,-60,-47.8,-67.2C-34.5,-74.5,-19.6,-74.8,-3.8,-70.2C12.1,-65.6,24.2,-56.2,37.9,-65.3Z" transform="translate(100 100)" /></svg>');
+            background-size: 400px;
+            opacity: 0.5;
+            z-index: 0;
+        }
+        
+        .testimonials-section .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonials-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        @media (max-width: 768px) {
+            .testimonials-header {
+                margin-bottom: 40px;
+            }
+        }
+        
+        .testimonials-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: bold;
+            margin-bottom: 16px;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 28px;
+            margin-bottom: 48px;
+            width: 100%;
+        }
+        
+        @media (max-width: 768px) {
+            .testimonials-grid {
+                gap: 24px;
+                margin-bottom: 40px;
+            }
+        }
+        
+        .testimonial-card {
+            background-color: var(--card);
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            position: relative;
+            width: 100%;
+        }
+        
+        @media (max-width: 768px) {
+            .testimonial-card {
+                padding: 22px;
+            }
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(26, 95, 35, 0.1);
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 16px;
+            left: 22px;
+            font-size: 70px;
+            color: var(--secondary);
+            font-family: Georgia, serif;
+            opacity: 0.2;
+            line-height: 1;
+        }
+        
+        @media (max-width: 768px) {
+            .testimonial-card::before {
+                font-size: 60px;
+                top: 14px;
+                left: 18px;
+            }
+        }
+        
+        .testimonial-content {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--foreground);
+            margin-bottom: 22px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+        
+        .author-avatar {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .author-info h4 {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 4px;
+            color: var(--primary);
+        }
+        
+        .author-info p {
+            font-size: 0.85rem;
+            color: var(--muted-foreground);
+        }
+        
+        .testimonial-rating {
+            margin-top: 6px;
+            color: var(--secondary);
+            font-size: 13px;
+        }
+        
+        .testimonial-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 16px;
+            padding: 36px;
+            text-align: center;
+            color: white;
+            width: 100%;
+        }
+        
+        @media (max-width: 768px) {
+            .testimonial-stats {
+                grid-template-columns: 1fr;
+                gap: 24px;
+                padding: 28px 20px;
+            }
+        }
+        
+        .testimonial-stat-item h3 {
+            font-size: 2.2rem;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+        
+        @media (max-width: 768px) {
+            .testimonial-stat-item h3 {
+                font-size: 1.8rem;
+            }
+        }
+        
+        .testimonial-stat-item p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+        
+        .governor-impact-note {
+            text-align: center;
+            margin-top: 40px;
+            padding: 28px;
+            background-color: white;
+            border-radius: 16px;
+            border-left: 4px solid var(--secondary);
+            width: 100%;
+        }
+        
+        @media (max-width: 768px) {
+            .governor-impact-note {
+                padding: 22px;
+                margin-top: 32px;
+            }
+        }
+        
+        .governor-impact-note h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 14px;
+        }
+        
+        .governor-impact-note p {
+            font-size: 1rem;
+            color: var(--foreground);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            background-color: var(--background);
+            width: 100%;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                gap: 22px;
+            }
+        }
+        
+        .contact-card {
+            background-color: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px;
+            text-align: center;
+            transition: all 0.3s;
+            width: 100%;
+        }
+        
+        @media (max-width: 768px) {
+            .contact-card {
+                padding: 22px;
+            }
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px -4px rgba(26, 95, 35, 0.15);
+        }
+        
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 50%, var(--accent) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            transition: transform 0.3s;
+        }
+        
+        .contact-card:hover .contact-icon {
+            transform: scale(1.1);
+        }
+        
+        .contact-icon i {
+            font-size: 26px;
+            color: var(--secondary);
+        }
+        
+        .contact-card h3 {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .contact-card p {
+            color: var(--muted-foreground);
+            margin-bottom: 16px;
+            font-size: 13px;
+        }
+        
+        .contact-link {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 14px;
+        }
+        
+        .contact-link:hover {
+            color: rgba(26, 95, 35, 0.8);
+        }
+        
+        .government-link {
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .government-link a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--muted-foreground);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 14px;
+        }
+        
+        .government-link a:hover {
+            color: var(--primary);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: var(--primary-foreground);
+            padding-top: 60px;
+            padding-bottom: 28px;
+            width: 100%;
+        }
+        
+        @media (max-width: 768px) {
+            footer {
+                padding-top: 50px;
+                padding-bottom: 24px;
+            }
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+            width: 100%;
+        }
+        
+        @media (max-width: 1024px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+        }
+        
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .footer-logo {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px -4px rgba(255, 193, 0, 0.4);
+        }
+        
+        .footer-logo i {
+            color: var(--primary);
+            font-size: 26px;
+        }
+        
+        .footer-brand-text h3 {
+            color: var(--primary-foreground);
+            font-size: 1.2rem;
+            font-weight: bold;
+            line-height: 1.2;
+        }
+        
+        .footer-brand-text p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 13px;
+        }
+        
+        .footer-description {
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 400px;
+            margin-bottom: 22px;
+            font-size: 14px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 14px;
+        }
+        
+        .social-link {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .social-link:hover {
+            background-color: var(--secondary);
+            color: var(--primary);
+        }
+        
+        .footer-column h4 {
+            color: var(--primary-foreground);
+            font-weight: bold;
+            margin-bottom: 18px;
+            font-size: 1.1rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 14px;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .footer-divider {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 28px;
+            width: 100%;
+        }
+        
+        .footer-bottom {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            text-align: center;
+            width: 100%;
+        }
+        
+        @media (min-width: 768px) {
+            .footer-bottom {
+                flex-direction: row;
+                justify-content: space-between;
+                text-align: left;
+            }
+        }
+        
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 13px;
+        }
+        
+        /* Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+            color: var(--primary);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: 0 4px 15px rgba(255, 193, 0, 0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            visibility: hidden;
+            z-index: 999;
+        }
+        
+        @media (max-width: 768px) {
+            .scroll-to-top {
+                width: 44px;
+                height: 44px;
+                font-size: 18px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+        
+        .scroll-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
+        }
+        
+        .scroll-to-top:hover {
+            background: linear-gradient(135deg, var(--secondary-dark), var(--secondary));
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(255, 193, 0, 0.4);
+        }
+        
+        .scroll-to-top:active {
+            transform: scale(0.95);
+        }
+        
+        /* Abia State Logo Styles */
+        .state-logo-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+        
+        .state-logo-placeholder span:first-child {
+            font-size: 14px;
+            line-height: 1;
+        }
+        
+        .state-logo-placeholder span:last-child {
+            font-size: 9px;
+            opacity: 0.9;
+        }
+        
+        /* Mobile overflow prevention */
+        @media (max-width: 768px) {
+            body, html {
+                max-width: 100vw;
+                overflow-x: hidden;
+            }
+            
+            .hero h1, .free-banner {
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+                hyphens: auto;
+            }
+            
+            .section-title, .governor-info h2 {
+                hyphens: auto;
+            }
+        }
+        
+        /* Small mobile devices */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 10px;
+            }
+            
+            section {
+                padding: 40px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+        
+        /* Tablet devices */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .container {
+                padding: 0 20px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -40,8 +2307,6 @@
                 <a href="#contact">Contact</a>
             </nav>
             
-        
-            
             <!-- Mobile Menu Button -->
             <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <i class="fas fa-bars"></i>
@@ -57,53 +2322,51 @@
                 <a href="#about" class="nav-link">About</a>
                 <a href="#testimonials" class="nav-link">Testimonials</a>
                 <a href="#contact" class="nav-link">Contact</a>
-                <!-- <div class="free-badge">FREE RIDES</div> -->
             </div>
         </div>
     </header>
 
-    
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-background"></div>
         
         <div class="container hero-content">
             <!-- Government Badge -->
-            <div class="government-badge animate-on-scroll">
+            <div class="government-badge animate-from-top">
                 <span class="dot"></span>
                 <span>An Initiative of the Abia State Government</span>
             </div>
             
             <!-- Main Title -->
-            <h1 class="animate-on-scroll">
+            <h1 class="animate-fade-in">
                 Abia <span class="text-gradient-gold">Green</span> Shuttle
             </h1>
             
             <!-- Subtitle -->
-            <p class="animate-on-scroll">
+            <p class="animate-fade-in">
                 Free public transportation for all Abians. Connecting communities, empowering lives.
             </p>
             
             <!-- Free Banner -->
-            <div class="free-banner animate-on-scroll">
+            <div class="free-banner animate-zoom-in">
                 🎉 CURRENTLY FREE FOR ALL PASSENGERS 🎉
             </div>
             
             <!-- Quick Stats -->
             <div class="quick-stats">
-                <div class="stat-card animate-on-scroll" style="transition-delay: 0.1s">
+                <div class="stat-card animate-slide-left" style="transition-delay: 0.1s">
                     <i class="fas fa-bus"></i>
                     <p>Modern Fleet</p>
                     <div class="value">10+ Buses</div>
                 </div>
                 
-                <div class="stat-card animate-on-scroll" style="transition-delay: 0.2s">
+                <div class="stat-card animate-fade-in" style="transition-delay: 0.2s">
                     <i class="fas fa-map-marker-alt"></i>
                     <p>Coverage</p>
                     <div class="value">9+ Routes</div>
                 </div>
                 
-                <div class="stat-card animate-on-scroll" style="transition-delay: 0.3s">
+                <div class="stat-card animate-slide-right" style="transition-delay: 0.3s">
                     <i class="fas fa-clock"></i>
                     <p>Daily Service</p>
                     <div class="value">9AM - 4PM</div>
@@ -111,7 +2374,7 @@
             </div>
             
             <!-- CTA Button -->
-            <a href="#routes" class="cta-button animate-on-scroll" style="transition-delay: 0.4s">
+            <a href="#routes" class="cta-button animate-from-bottom" style="transition-delay: 0.4s">
                 View All Routes
                 <i class="fas fa-arrow-right"></i>
             </a>
@@ -125,122 +2388,200 @@
         </div>
     </section>
 
-    <!-- Governor Section - Redesigned -->
-    <section class="governor-section animate-on-scroll" id="governor">
+    <!-- Governor Section -->
+    <section class="governor-section">
         <div class="container governor-container">
-            <!-- Governor Image at Top Center -->
-            <div class="governor-image-container">
-                <img src="img/gov.jpg" 
-                     alt="Governor Alex Chioma Otti" class="governor-image">
+            <div class="governor-image-container animate-fade-in">
+                <img src="img/gov.jpg" alt="Governor Alex Chioma Otti" class="governor-image">
             </div>
-                <div class="governor-badge">Executive Governor</div>
+                <div class="governor-badge animate-zoom-in">Executive Governor</div>
 
-            
-            <!-- Governor Info Below Image -->
             <div class="governor-info">
-                <h2>Gov. Alex Chioma Otti, OFR</h2>
-                <div class="governor-title">Executive Governor of Abia State</div>
+                <h2 class="animate-slide-left">Gov. Alex Chioma Otti, OFR</h2>
                 
-                <p>
-                    Under the visionary leadership of His Excellency, Governor Alex Chioma Otti, 
-                    the Abia Green Shuttle initiative was launched as part of our commitment to 
-                    transforming transportation infrastructure and improving the lives of all Abians.
-                </p>
+                <p class="animate-fade-in">In December 2025, we launched Nigeria's first state-led electric public transportation initiative - the Abia Green Shuttle. This groundbreaking project represents our commitment to sustainable development, technological innovation, and improved quality of life for all Abians.</p>
                 
-                <p> 
-                    This transportation service reflects our administration's dedication to 
-                    providing quality public services, reducing the economic burden on citizens, 
-                    and building a more connected and prosperous Abia State.
-                </p>
-                
-                <div class="governor-quote">
-                    "Our commitment to the people of Abia State is unwavering. The Green Shuttle 
-                    initiative is more than just transportation; it's about connecting communities, 
-                    empowering our people, and building the foundation for economic growth and 
-                    development across our great state."
+                <div class="governor-quote animate-slide-right">
+                    "The Green Shuttle is more than just transportation; it's a statement of our commitment to environmental sustainability, economic growth, and modern infrastructure. We're building an Abia State that works for everyone - cleaner, greener, and more connected than ever before."
                 </div>
                 
-                <div class="governor-signature">- Gov. Alex Chioma Otti, OFR</div>
+                <p class="animate-fade-in">With an initial deployment of 20 electric buses and plans to expand to 100, powered by solar charging infrastructure, the Green Shuttle connects our major cities while reducing carbon emissions and transportation costs. This initiative demonstrates how visionary leadership can transform public service delivery in Nigeria.</p>
+                
+                <p class="governor-signature animate-from-bottom">— Governor Alex Chioma Otti, OFR</p>
             </div>
         </div>
     </section>
 
-
+    
     <!-- About Section -->
-    <section id="about">
+    <section class="about-section" id="about">
         <div class="container">
+            <div class="section-header">
+                <div class="section-badge animate-from-top">INITIATIVE OVERVIEW</div>
+                <h2 class="section-title animate-fade-in">Nigeria's <span class="text-gradient-gold">First Electric</span> Public Transport</h2>
+                <p class="section-description animate-fade-in">Launched in December 2025, the Abia Green Shuttle represents a revolutionary approach to public transportation in Nigeria, combining environmental sustainability with modern technology.</p>
+            </div>
+            
             <div class="about-content">
-                <!-- Left Column - Content -->
-                <div class="about-text animate-left animate-on-scroll">
-                    <span class="section-badge">About the Initiative</span>
-                    <h2 class="section-title">
-                        A Gift to the People of <span class="text-gradient-gold">Abia State</span>
-                    </h2>
-                    <p class="section-description">
-                        The Abia Green Shuttle is a flagship transportation initiative launched by the 
-                        Abia State Government to provide safe, and reliable public transportation 
-                        for all residents of Abia State.
-                    </p>
-                    <p class="section-description">
-                        This initiative reflects our commitment to improving the quality of life for 
-                        Abians, reducing transportation costs, and connecting our vibrant communities 
-                        across the state. The service is currently <strong style="color: var(--primary);">completely free</strong> as 
-                        a gift from the government to the people.
-                    </p>
+                <div>
+                    <h3 style="font-size: 1.8rem; margin-bottom: 20px; color: var(--primary);" class="animate-slide-left">Transforming Transportation in Abia</h3>
+                    <p style="margin-bottom: 20px;" class="animate-fade-in">The Abia Green Shuttle is a pioneering public transportation initiative featuring electric-powered buses designed to reduce transportation costs and promote environmental sustainability across Abia State.</p>
                     
-                    <!-- Stats -->
                     <div class="about-stats">
-                        <div class="stat-box primary">
-                            <div class="stat-value">10+</div>
-                            <div class="stat-label">Modern Buses</div>
+                        <div class="stat-box primary animate-from-bottom" style="transition-delay: 0.1s">
+                            <div class="stat-value">Dec 2025</div>
+                            <div class="stat-label">Launch Date</div>
                         </div>
-                        <div class="stat-box secondary">
-                            <div class="stat-value">9+</div>
-                            <div class="stat-label">Active Routes</div>
+                        <div class="stat-box secondary animate-from-bottom" style="transition-delay: 0.2s">
+                            <div class="stat-value">400-450km</div>
+                            <div class="stat-label">Bus Range</div>
                         </div>
-                        <div class="stat-box accent">
-                            <div style="color: black;" class="stat-value">6K+</div>
-                            <div class="stat-label">Daily Passengers</div>
+                        <div class="stat-box accent animate-from-bottom" style="transition-delay: 0.3s">
+                            <div class="stat-value">Coscharis</div>
+                            <div class="stat-label">Manufacturing Partner</div>
+                        </div>
+                    </div>
+                    
+                    <p style="margin-top: 20px;" class="animate-fade-in">The service initially deployed 20 electric buses with plans to expand to 100, operating across Aba, Umuahia, and Ohafia. Each bus is equipped with charging ports, CCTV cameras for security, and is fully accessible for persons with disabilities.</p>
+                </div>
+                
+                <div>
+                    <h3 style="font-size: 1.8rem; margin-bottom: 20px; color: var(--primary);" class="animate-slide-right">Core Values & Benefits</h3>
+                    <div class="values-grid">
+                        <div class="value-card animate-from-bottom" style="transition-delay: 0.1s">
+                            <div class="value-icon">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <h3>Environmental Sustainability</h3>
+                            <p>Zero emissions transportation powered by renewable solar energy, reducing carbon footprint across Abia State.</p>
+                        </div>
+                        <div class="value-card animate-from-bottom" style="transition-delay: 0.2s">
+                            <div class="value-icon">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <h3>Solar Powered</h3>
+                            <p>10 charging stations utilizing solar power and battery storage ensure consistent, eco-friendly operation.</p>
+                        </div>
+                        <div class="value-card animate-from-bottom" style="transition-delay: 0.3s">
+                            <div class="value-icon">
+                                <i class="fas fa-wheelchair"></i>
+                            </div>
+                            <h3>Accessibility</h3>
+                            <p>Designed for all citizens including persons with disabilities, ensuring inclusive public transportation.</p>
+                        </div>
+                        <div class="value-card animate-from-bottom" style="transition-delay: 0.4s">
+                            <div class="value-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h3>Safety & Security</h3>
+                            <p>CCTV cameras and modern safety features provide secure travel for all passengers.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bus Features Section -->
+    <section class="bus-features-section" id="features">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge animate-from-top">MODERN FEATURES</div>
+                <h2 class="section-title animate-fade-in">Advanced <span class="text-gradient-gold">Electric Bus</span> Features</h2>
+                <p class="section-description animate-fade-in">Our electric buses are equipped with state-of-the-art technology and amenities for a comfortable, secure, and sustainable travel experience.</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card animate-zoom-in" style="transition-delay: 0.1s">
+                    <div class="feature-icon">
+                        <i class="fas fa-solar-panel"></i>
+                    </div>
+                    <h3>Solar Powered</h3>
+                    <p>Charged by 10 dedicated solar charging stations with battery storage systems for continuous operation.</p>
+                </div>
+                
+                <div class="feature-card animate-zoom-in" style="transition-delay: 0.2s">
+                    <div class="feature-icon">
+                        <i class="fas fa-snowflake"></i>
+                    </div>
+                    <h3>Air Conditioned</h3>
+                    <p>Fully air-conditioned cabins for comfortable travel regardless of external weather conditions.</p>
+                </div>
+                
+                <div class="feature-card animate-zoom-in" style="transition-delay: 0.3s">
+                    <div class="feature-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>CCTV Security</h3>
+                    <p>24/7 recording cameras ensure passenger safety and security throughout the journey.</p>
+                </div>
+                
+                <div class="feature-card animate-zoom-in" style="transition-delay: 0.4s">
+                    <div class="feature-icon">
+                        <i class="fas fa-wheelchair"></i>
+                    </div>
+                    <h3>Disability Access</h3>
+                    <p>Specially designed for easy access by persons with disabilities, including wheelchair ramps.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Infrastructure Section -->
+    <section class="infrastructure-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge animate-from-top">SUSTAINABLE INFRASTRUCTURE</div>
+                <h2 class="section-title animate-fade-in">Solar Charging <span class="text-gradient-gold">Network</span></h2>
+                <p class="section-description animate-fade-in">Our 10 charging stations powered by solar energy ensure the Green Shuttle operates sustainably and reliably across Abia State.</p>
+            </div>
+            
+            <div class="infrastructure-grid">
+                <div class="infrastructure-card animate-slide-left">
+                    <div class="infrastructure-image">
+                        <i class="fas fa-solar-panel"></i>
+                    </div>
+                    <div class="infrastructure-content">
+                        <h3>Solar Charging Stations</h3>
+                        <p>10 strategically located charging stations utilizing solar power and battery storage systems to ensure consistent operation of the electric bus fleet.</p>
+                        <div class="infrastructure-stats">
+                            <div class="infrastructure-stat">
+                                <div class="value">10</div>
+                                <div class="label">Stations</div>
+                            </div>
+                            <div class="infrastructure-stat">
+                                <div class="value">24/7</div>
+                                <div class="label">Operation</div>
+                            </div>
+                            <div class="infrastructure-stat">
+                                <div class="value">Solar</div>
+                                <div class="label">Powered</div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Right Column - Values -->
-                <div class="values-grid">
-                    <!-- Value 1 -->
-                    <div class="value-card animate-up animate-on-scroll">
-                        <div class="value-icon">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <h3>Safety First</h3>
-                        <p>All our shuttles are regularly maintained and driven by trained, licensed professionals.</p>
+                <div class="infrastructure-card animate-slide-right">
+                    <div class="infrastructure-image">
+                        <i class="fas fa-industry"></i>
                     </div>
-                    
-                    <!-- Value 2 -->
-                    <div class="value-card animate-down animate-on-scroll" style="transition-delay: 0.15s">
-                        <div class="value-icon">
-                            <i class="fas fa-leaf"></i>
+                    <div class="infrastructure-content">
+                        <h3>Partnership with Coscharis</h3>
+                        <p>The electric buses are manufactured in partnership with Coscharis Group, featuring 400-450km range per charge and modern amenities for passenger comfort.</p>
+                        <div class="infrastructure-stats">
+                            <div class="infrastructure-stat">
+                                <div class="value">450km</div>
+                                <div class="label">Range</div>
+                            </div>
+                            <div class="infrastructure-stat">
+                                <div class="value">20→100</div>
+                                <div class="label">Buses</div>
+                            </div>
+                            <div class="infrastructure-stat">
+                                <div class="value">Coscharis</div>
+                                <div class="label">Partner</div>
+                            </div>
                         </div>
-                        <h3>Eco-Friendly</h3>
-                        <p>Modern, fuel-efficient buses reducing carbon footprint while serving our communities.</p>
-                    </div>
-                    
-                    <!-- Value 3 -->
-                    <div class="value-card animate-up animate-on-scroll" style="transition-delay: 0.3s">
-                        <div class="value-icon">
-                            <i class="fas fa-heart"></i>
-                        </div>
-                        <h3>People-Centered</h3>
-                        <p>Designed with the needs of Abians in mind - comfortable, accessible, and reliable.</p>
-                    </div>
-                    
-                    <!-- Value 4 -->
-                    <div class="value-card animate-down animate-on-scroll" style="transition-delay: 0.45s">
-                        <div class="value-icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <h3>Community Impact</h3>
-                        <p>Empowering economic growth by connecting workers, students, and businesses.</p>
                     </div>
                 </div>
             </div>
@@ -248,281 +2589,204 @@
     </section>
 
     <!-- Routes Section -->
-    <section id="routes" class="routes-section">
+    <section class="routes-section" id="routes">
         <div class="container">
-            <div class="section-header animate-on-scroll">
-                <span class="section-badge">Our Coverage</span>
-                <h2 class="section-title">
-                    Shuttle <span class="text-gradient-gold">Routes</span>
-                </h2>
-                <p class="section-description">
-                    Connecting major cities and towns across Abia State with reliable, comfortable, and free transportation.
-                </p>
+            <div class="section-header">
+                <div class="section-badge animate-from-top">CONNECTING ABIA</div>
+                <h2 class="section-title animate-fade-in">Green Shuttle <span class="text-gradient-gold">Routes</span></h2>
+                <p class="section-description animate-fade-in">Connecting major urban centers across Abia State with efficient, sustainable electric bus service.</p>
             </div>
             
             <div class="routes-grid">
-                <!-- Route 1 -->
-                <div class="route-card animate-left animate-on-scroll">
+                <div class="route-card animate-from-bottom" style="transition-delay: 0.1s">
                     <div class="route-header">
                         <div class="route-from">
                             <div class="route-dot from"></div>
-                            <span class="city">Umuahia</span>
+                            <span style="font-weight: 600;">Aba</span>
                         </div>
-                        <i class="fas fa-arrow-right route-arrow"></i>
+                        <div class="route-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
                         <div class="route-to">
-                            <span class="city">Aba</span>
                             <div class="route-dot to"></div>
+                            <span style="font-weight: 600;">Umuahia</span>
                         </div>
                     </div>
-                    <div class="distance-badge">58 km</div>
-                    <div class="stops-label">Key Stops</div>
+                    <div class="distance-badge">Major Commercial Route</div>
+                    <p style="margin-bottom: 16px; color: var(--muted-foreground); font-size: 0.95rem;">Connecting Abia's two major commercial hubs with frequent daily services.</p>
+                    <div class="stops-label">Key Stops Include:</div>
                     <div class="stops-container">
-                        <span class="stop-badge"><i class="fas fa-map-marker-alt"></i> Ubakala</span>
-                        <span class="stop-badge"><i class="fas fa-map-marker-alt"></i> Isiala Ngwa</span>
-                        <span class="stop-badge"><i class="fas fa-map-marker-alt"></i> Osisioma</span>
+                        <div class="stop-badge"><i class="fas fa-map-marker-alt"></i> Aba Main Park</div>
+                        <div class="stop-badge"><i class="fas fa-map-marker-alt"></i> Osisioma Junction</div>
+                        <div class="stop-badge"><i class="fas fa-map-marker-alt"></i> Umuahia Central</div>
                     </div>
                 </div>
                 
-                <!-- Route 2 -->
-                <div class="route-card animate-right animate-on-scroll" style="transition-delay: 0.1s">
+                <div class="route-card animate-from-bottom" style="transition-delay: 0.2s">
                     <div class="route-header">
                         <div class="route-from">
                             <div class="route-dot from"></div>
-                            <span class="city">Aba</span>
+                            <span style="font-weight: 600;">Umuahia</span>
                         </div>
-                        <i class="fas fa-arrow-right route-arrow"></i>
+                        <div class="route-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
                         <div class="route-to">
-                            <span class="city">Ohafia</span>
                             <div class="route-dot to"></div>
+                            <span style="font-weight: 600;">Ohafia</span>
                         </div>
                     </div>
-                    <div class="distance-badge">85 km</div>
-                    <div class="stops-label">Key Stops</div>
+                    <div class="distance-badge">Northern Corridor</div>
+                    <p style="margin-bottom: 16px; color: var(--muted-foreground); font-size: 0.95rem;">Connecting the state capital with northern regions including Abiriba and Nkporo.</p>
+                    <div class="stops-label">Key Stops Include:</div>
                     <div class="stops-container">
-                        <span class="stop-badge"><i class="fas fa-map-marker-alt"></i> Umuahia</span>
-                        <span class="stop-badge"><i class="fas fa-map-marker-alt"></i> Bende</span>
-                        <span class="stop-badge"><i class="fas fa-map-marker-alt"></i> Uzuakoli</span>
+                        <div class="stop-badge"><i class="fas fa-map-marker-alt"></i> Umuahia Main Terminal</div>
+                        <div class="stop-badge"><i class="fas fa-map-marker-alt"></i> Abiriba</div>
+                        <div class="stop-badge"><i class="fas fa-map-marker-alt"></i> Nkporo</div>
+                        <div class="stop-badge"><i class="fas fa-map-marker-alt"></i> Ohafia Central</div>
                     </div>
                 </div>
                 
-                <!-- Route 3 -->
-                <div class="route-card animate-left animate-on-scroll" style="transition-delay: 0.2s">
+                <div class="route-card animate-from-bottom" style="transition-delay: 0.3s">
                     <div class="route-header">
                         <div class="route-from">
                             <div class="route-dot from"></div>
-                            <span class="city">Umuahia</span>
+                            <span style="font-weight: 600;">Umuahia</span>
                         </div>
-                        <i class="fas fa-arrow-right route-arrow"></i>
+                        <div class="route-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
                         <div class="route-to">
-                            <span class="city">Arochukwu</span>
                             <div class="route-dot to"></div>
+                            <span style="font-weight: 600;">Umunneochi</span>
                         </div>
                     </div>
-                    <div class="distance-badge">75 km</div>
-                    <div class="stops-label">Key Stops</div>
+                    <div class="distance-badge">Regional Connection</div>
+                    <p style="margin-bottom: 16px; color: var(--muted-foreground); font-size: 0.95rem;">Serving communities in the Umunneochi region with regular daily services.</p>
+                    <div class="stops-label">Key Stops Include:</div>
                     <div class="stops-container">
-                        <span class="stop-badge"><i class="fas fa-map-marker-alt"></i> Ohafia</span>
-                        <span class="stop-badge"><i class="fas fa-map-marker-alt"></i> Abam</span>
-                        <span class="stop-badge"><i class="fas fa-map-marker-alt"></i> Arochukwu</span>
+                        <div class="stop-badge"><i class="fas fa-map-marker-alt"></i> Umuahia Terminal</div>
+                        <div class="stop-badge"><i class="fas fa-map-marker-alt"></i> Isuochi</div>
+                        <div class="stop-badge"><i class="fas fa-map-marker-alt"></i> Umunneochi Central</div>
                     </div>
                 </div>
                 
-                <!-- Route 4 -->
-                <!-- <div class="route-card animate-right animate-on-scroll" style="transition-delay: 0.3s">
+                <div class="route-card animate-from-bottom" style="transition-delay: 0.4s">
                     <div class="route-header">
                         <div class="route-from">
                             <div class="route-dot from"></div>
-                            <span class="city">Aba</span>
+                            <span style="font-weight: 600;">Aba</span>
                         </div>
-                        <i class="fas fa-arrow-right route-arrow"></i>
+                        <div class="route-arrow">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
                         <div class="route-to">
-                            <span class="city">Ikwuano</span>
                             <div class="route-dot to"></div>
+                            <span style="font-weight: 600;">Intra-City</span>
                         </div>
                     </div>
-                    <div class="distance-badge">45 km</div>
-                    <div class="stops-label">Key Stops</div>
+                    <div class="distance-badge">City Service</div>
+                    <p style="margin-bottom: 16px; color: var(--muted-foreground); font-size: 0.95rem;">Multiple routes within Aba connecting major markets, residential areas, and institutions.</p>
+                    <div class="stops-label">Coverage Areas:</div>
                     <div class="stops-container">
-                        <span class="stop-badge"><i class="fas fa-map-marker-alt"></i> Oloko</span>
-                        <span class="stop-badge"><i class="fas fa-map-marker-alt"></i> Ariam</span>
-                        <span class="stop-badge"><i class="fas fa-map-marker-alt"></i> Ikwuano</span>
+                        <div class="stop-badge"><i class="fas fa-map-marker-alt"></i> Ariaria Market</div>
+                        <div class="stop-badge"><i class="fas fa-map-marker-alt"></i> Aba South</div>
+                        <div class="stop-badge"><i class="fas fa-map-marker-alt"></i> Osisioma</div>
+                        <div class="stop-badge"><i class="fas fa-map-marker-alt"></i> Ogbor Hill</div>
                     </div>
-                </div> -->
-                <!-- Route 5 -->
-                <!-- <div class="route-card animate-right animate-on-scroll" style="transition-delay: 0.3s">
-                    <div class="route-header">
-                        <div class="route-from">
-                            <div class="route-dot from"></div>
-                            <span class="city">Aba</span>
-                        </div>
-                        <i class="fas fa-arrow-right route-arrow"></i>
-                        <div class="route-to">
-                            <span class="city">Ukwa West</span>
-                            <div class="route-dot to"></div>
-                        </div>
-                    </div>
-                    <div class="distance-badge">40 km</div>
-                    <div class="stops-label">Key Stops</div>
-                    <div class="stops-container">
-                        <span class="stop-badge"><i class="fas fa-map-marker-alt"></i> Alaoji</span>
-                        <span class="stop-badge"><i class="fas fa-map-marker-alt"></i> Ihie</span>
-                        <span class="stop-badge"><i class="fas fa-map-marker-alt"></i> Obehie</span>
-                    </div>
-                </div> -->
-                <!-- Route 6 -->
-                <!-- <div class="route-card animate-right animate-on-scroll" style="transition-delay: 0.3s">
-                    <div class="route-header">
-                        <div class="route-from">
-                            <div class="route-dot from"></div>
-                            <span class="city">Ubakala</span>
-                        </div>
-                        <i class="fas fa-arrow-right route-arrow"></i>
-                        <div class="route-to">
-                            <span class="city">Osisioma</span>
-                            <div class="route-dot to"></div>
-                        </div>
-                    </div>
-                    <div class="distance-badge">30 km</div>
-                    <div class="stops-label">Key Stops</div>
-                    <div class="stops-container">
-                        <span class="stop-badge"><i class="fas fa-map-marker-alt"></i> Isialangwa</span>
-                        <span class="stop-badge"><i class="fas fa-map-marker-alt"></i> Amaorji</span>
-                        <span class="stop-badge"><i class="fas fa-map-marker-alt"></i> Ntigha</span>
-                    </div>
-                </div> -->
-            </div>
-            
-            <div class="section-header animate-on-scroll" style="transition-delay: 0.5s; margin-top: 48px;">
-                <p class="section-description">
-                    More routes coming soon as we expand our services across Abia State
-                </p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Schedule Section -->
-    <section id="schedule" class="schedule-section">
+    <section class="schedule-section">
         <div class="container">
-            <div class="section-header animate-on-scroll">
-                <span class="section-badge">Plan Your Trip</span>
-                <h2 class="section-title">
-                    Operating <span class="text-gradient-gold">Schedule</span>
-                </h2>
-                <p class="section-description">
-                    Our shuttles run throughout the week to serve you better. Check our schedule and plan your journey.
-                </p>
+            <div class="section-header">
+                <div class="section-badge animate-from-top">OPERATING HOURS</div>
+                <h2 class="section-title animate-fade-in">Service <span class="text-gradient-gold">Schedule</span></h2>
+                <p class="section-description animate-fade-in">Regular and frequent services operating daily across all major routes in Abia State.</p>
             </div>
             
             <div class="schedule-content">
-                <!-- Operating Days -->
-                <div class="schedule-card animate-right animate-on-scroll">
+                <div class="schedule-card animate-slide-left">
                     <div class="schedule-header">
                         <i class="fas fa-calendar-alt"></i>
-                        <h3>Operating Days</h3>
+                        <h3>Weekly Schedule</h3>
                     </div>
                     
-                    <div class="schedule-days">
-                        <div class="schedule-day">
-                            <div class="day-info">
-                                <div class="day-status status-operational"></div>
-                                <span class="day-name">Monday</span>
-                            </div>
-                            <span class="day-hours">9:00 AM - 4:00 PM</span>
+                    <div class="schedule-day animate-fade-in" style="transition-delay: 0.1s">
+                        <div class="day-info">
+                            <div class="day-status status-operational"></div>
+                            <span class="day-name">Monday - Friday</span>
                         </div>
-                        
-                        <div class="schedule-day">
-                            <div class="day-info">
-                                <div class="day-status status-operational"></div>
-                                <span class="day-name">Tuesday</span>
-                            </div>
-                            <span class="day-hours">9:00 AM - 4:00 PM</span>
+                        <span class="day-hours">9:00 AM - 4:00 PM</span>
+                    </div>
+                    
+                    <div class="schedule-day animate-fade-in" style="transition-delay: 0.2s">
+                        <div class="day-info">
+                            <div class="day-status status-operational"></div>
+                            <span class="day-name">Saturday</span>
                         </div>
-                        
-                        <div class="schedule-day">
-                            <div class="day-info">
-                                <div class="day-status status-operational"></div>
-                                <span class="day-name">Wednesday</span>
-                            </div>
-                            <span class="day-hours">9:00 AM - 4:00 PM</span>
+                        <span class="day-hours">9:00 AM - 4:00 PM</span>
+                    </div>
+                    
+                    <!-- <div class="schedule-day animate-fade-in" style="transition-delay: 0.3s">
+                        <div class="day-info">
+                            <div class="day-status status-operational"></div>
+                            <span class="day-name">Sunday</span>
                         </div>
-                        
-                        <div class="schedule-day">
-                            <div class="day-info">
-                                <div class="day-status status-operational"></div>
-                                <span class="day-name">Thursday</span>
-                            </div>
-                            <span class="day-hours">9:00 AM - 4:00 PM</span>
-                        </div>
-                        
-                        <div class="schedule-day">
-                            <div class="day-info">
-                                <div class="day-status status-operational"></div>
-                                <span class="day-name">Friday</span>
-                            </div>
-                            <span class="day-hours">9:00 AM - 4:00 PM</span>
-                        </div>
-                        
-                        <div class="schedule-day">
-                            <div class="day-info">
-                                <div class="day-status status-operational"></div>
-                                <span class="day-name">Saturday</span>
-                            </div>
-                            <span class="day-hours">9:00 AM - 4:00 PM</span>
-                        </div>
-                        
-                        
+                        <span class="day-hours">8:00 AM - 8:00 PM</span>
+                    </div> -->
+                    
+                    <div class="notice animate-fade-in" style="transition-delay: 0.4s">
+                        <i class="fas fa-info-circle"></i>
+                        <p>Service was offered FREE OF CHARGE from late December 2025 to mid-January 2026 as part of the launch initiative.</p>
                     </div>
                 </div>
                 
-                <!-- Frequency & Time Slots -->
-                <div class="schedule-card animate-left animate-on-scroll" style="transition-delay: 0.1s">
+                <div class="schedule-card animate-slide-right">
                     <div class="schedule-header">
                         <i class="fas fa-clock"></i>
-                        <h3>Shuttle Frequency</h3>
+                        <h3>Peak Hours Frequency</h3>
                     </div>
                     
-                    <div class="time-slots">
-                        <div class="time-slot">
-                            <div class="time-slot-icon">
-                                <i class="fas fa-sun"></i>
-                            </div>
-                            <div class="time-slot-content">
-                                <h4>Morning Rush</h4>
-                                <p>9:00 AM - 11 AM</p>
-                                <span class="frequency-badge">Every 10 mins</span>
-                            </div>
+                    <div class="time-slot animate-from-bottom" style="transition-delay: 0.1s">
+                        <div class="time-slot-icon">
+                            <i class="fas fa-sun"></i>
                         </div>
-                        
-                        <div class="time-slot">
-                            <div class="time-slot-icon">
-                                <i class="fas fa-clock"></i>
-                            </div>
-                            <div class="time-slot-content">
-                                <h4>Mid-Day</h4>
-                                <p>11:30 AM - 4:00 PM</p>
-                                <span class="frequency-badge">Every 20 mins</span>
-                            </div>
+                        <div class="time-slot-content">
+                            <h4>Morning Peak (9AM - 11AM)</h4>
+                            <p>Commuter hours for work and school</p>
+                            <div class="frequency-badge">Every 15-20 minutes</div>
                         </div>
-                        
-                        <!-- <div class="time-slot">
-                            <div class="time-slot-icon">
-                                <i class="fas fa-moon"></i>
-                            </div>
-                            <div class="time-slot-content">
-                                <h4>Evening Rush</h4>
-                                <p>4:00 PM - 7:00 PM</p>
-                                <span class="frequency-badge">Every 10 mins</span>
-                            </div>
-                        </div> -->
                     </div>
                     
-                    <!-- Notice -->
-                    <div class="notice">
-                        <i class="fas fa-exclamation-circle"></i>
-                        <p>
-                            Shuttle frequency may vary based on demand and special events. 
-                            Please arrive at the terminal 10 minutes before departure.
-                        </p>
+                    <div class="time-slot animate-from-bottom" style="transition-delay: 0.2s">
+                        <div class="time-slot-icon">
+                            <i class="fas fa-cloud-sun"></i>
+                        </div>
+                        <div class="time-slot-content">
+                            <h4>Daytime Service (11AM - 4PM)</h4>
+                            <p>Regular service for daily activities</p>
+                            <div class="frequency-badge">Every 25-30 minutes</div>
+                        </div>
+                    </div>
+                    
+                    <!-- <div class="time-slot animate-from-bottom" style="transition-delay: 0.3s">
+                        <div class="time-slot-icon">
+                            <i class="fas fa-moon"></i>
+                        </div>
+                        <div class="time-slot-content">
+                            <h4>Evening Peak (4PM - 7PM)</h4>
+                            <p>Return commute hours</p>
+                            <div class="frequency-badge">Every 15-20 minutes</div>
+                        </div>
+                    </div> -->
+                    
+                    <div class="notice animate-fade-in" style="transition-delay: 0.4s">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <p>Frequency may vary during holidays and special events. Real-time updates available at terminals.</p>
                     </div>
                 </div>
             </div>
@@ -530,104 +2794,103 @@
     </section>
 
     <!-- Terminals Section -->
-    <section id="terminals" class="terminals-section">
+    <section class="terminals-section" id="terminals">
         <div class="container">
-            <div class="section-header animate-on-scroll">
-                <span class="section-badge">Find Us</span>
-                <h2 class="section-title">
-                    Our <span class="text-gradient-gold">Terminals</span>
-                </h2>
-                <p class="section-description">
-                    Strategic terminal locations across Abia State for your convenience. 
-                    Find the nearest terminal and begin your journey.
-                </p>
+            <div class="section-header">
+                <div class="section-badge animate-from-top">MODERN FACILITIES</div>
+                <h2 class="section-title animate-fade-in">Bus Terminals & <span class="text-gradient-gold">Stops</span></h2>
+                <p class="section-description animate-fade-in">Modern terminals and stops currently being finalized in Aba and Umuahia to provide comfortable waiting areas and facilities.</p>
             </div>
             
             <div class="terminals-grid">
-                <!-- Terminal 1 -->
-                <div class="terminal-card animate-left animate-on-scroll">
+                <div class="terminal-card animate-from-bottom" style="transition-delay: 0.1s">
                     <div class="terminal-header">
-                        <span class="terminal-type type-major">Major Hub</span>
+                        <div class="terminal-type type-major">MAJOR TERMINAL</div>
                         <div class="terminal-title-row">
-                            <h3>Umuahia Central Terminal</h3>
+                            <h3>Aba Central Terminal</h3>
                             <div class="terminal-icon">
                                 <i class="fas fa-bus"></i>
                             </div>
                         </div>
                         <div class="terminal-location">
-                            <i class="fas fa-location-arrow"></i>
-                            <span>Umuahia Main Gate</span>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Aba Main City Center</span>
                         </div>
                     </div>
                     <div class="terminal-body">
                         <div class="terminal-routes">
-                            <i class="fas fa-users"></i>
-                            <span>3 Routes Available</span>
+                            <i class="fas fa-route"></i>
+                            <span>Routes: Aba ↔ Umuahia, Intra-City Services</span>
                         </div>
-                        <div class="facilities-label">Facilities</div>
+                        <div class="facilities-label">TERMINAL FACILITIES</div>
                         <div class="facilities-container">
-                            <span class="facility-badge">Waiting Area</span>
-                            <span class="facility-badge">Information Desk</span>
-                            <span class="facility-badge">Restrooms</span>
-                            <!-- <span class="facility-badge">First Aid</span> -->
+                            <div class="facility-badge">Waiting Lounge</div>
+                            <div class="facility-badge">Ticket Counter</div>
+                            <!-- <div class="facility-badge">Charging Station</div> -->
+                            <div class="facility-badge">Restrooms</div>
+                            <div class="facility-badge">Security</div>
+                            <div class="facility-badge">Information Desk</div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Terminal 2 -->
-                <div class="terminal-card animate-up animate-on-scroll" style="transition-delay: 0.1s">
+                <div class="terminal-card animate-from-bottom" style="transition-delay: 0.2s">
                     <div class="terminal-header">
-                        <span class="terminal-type type-major">Major Hub</span>
+                        <div class="terminal-type type-major">MAJOR TERMINAL</div>
                         <div class="terminal-title-row">
-                            <h3>Aba Main Terminal</h3>
+                            <h3>Umuahia Capital Terminal</h3>
                             <div class="terminal-icon">
                                 <i class="fas fa-bus"></i>
                             </div>
                         </div>
                         <div class="terminal-location">
-                            <i class="fas fa-location-arrow"></i>
-                            <span>Aba Main Park</span>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Umuahia City Center</span>
                         </div>
                     </div>
                     <div class="terminal-body">
                         <div class="terminal-routes">
-                            <i class="fas fa-users"></i>
-                            <span>3 Routes Available</span>
+                            <i class="fas fa-route"></i>
+                            <span>Routes: Umuahia ↔ Ohafia, Umuahia ↔ Umunneochi</span>
                         </div>
-                        <div class="facilities-label">Facilities</div>
+                        <div class="facilities-label">TERMINAL FACILITIES</div>
                         <div class="facilities-container">
-                            <span class="facility-badge">Facilities in progress <progress></span>
-                            <!-- <span class="facility-badge">Information Desk</span>
-                            <span class="facility-badge">Restrooms</span>
-                            <span class="facility-badge">Parking</span> -->
+                            <div class="facility-badge">Waiting Lounge</div>
+                            <div class="facility-badge">Solar Charging</div>
+                            <div class="facility-badge">Restrooms</div>
+                            <div class="facility-badge">Security</div>
+                            <!-- <div class="facility-badge">WiFi Zone</div> -->
+                            <div class="facility-badge">Information Desk</div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Terminal 3 -->
-                <div class="terminal-card animate-right animate-on-scroll" style="transition-delay: 0.2s">
+                <div class="terminal-card animate-from-bottom" style="transition-delay: 0.3s">
                     <div class="terminal-header">
-                        <span class="terminal-type type-regional">Regional Terminal</span>
+                        <div class="terminal-type type-regional">REGIONAL TERMINAL</div>
                         <div class="terminal-title-row">
-                            <h3>Ohafia Terminal</h3>
+                            <h3>Ohafia Transit Hub</h3>
                             <div class="terminal-icon">
-                                <i class="fas fa-bus"></i>
+                                <i class="fas fa-exchange-alt"></i>
                             </div>
                         </div>
                         <div class="terminal-location">
-                            <i class="fas fa-location-arrow"></i>
-                            <span>Abiriba Road, Ohafia</span>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Ohafia Central</span>
                         </div>
                     </div>
                     <div class="terminal-body">
                         <div class="terminal-routes">
-                            <i class="fas fa-users"></i>
-                            <span>4 Routes Available</span>
+                            <i class="fas fa-route"></i>
+                            <span>Routes: Ohafia ↔ Umuahia, Regional Services</span>
                         </div>
-                        <div class="facilities-label">Facilities</div>
+                        <div class="facilities-label">TERMINAL FACILITIES</div>
                         <div class="facilities-container">
-                            <span class="facility-badge">Facilities in progress <progress></progress></span>
-                            <!-- <span class="facility-badge">Information Desk</span> -->
+                            <div class="facility-badge">Waiting Area</div>
+                            <!-- <div class="facility-badge">Solar Charging</div> -->
+                            <div class="facility-badge">Restrooms</div>
+                            <div class="facility-badge">Security</div>
+                            <div class="facility-badge">Information Board</div>
                         </div>
                     </div>
                 </div>
@@ -635,31 +2898,25 @@
         </div>
     </section>
 
-    <!-- Testimonials Section (NEW) -->
-    <section id="testimonials" class="testimonials-section">
+    <!-- Testimonials Section -->
+    <section class="testimonials-section" id="testimonials">
         <div class="container">
-            <div class="testimonials-header animate-on-scroll">
-                <span class="section-badge">Voice of the People</span>
-                <h2 class="testimonials-title">
-                    What <span class="text-gradient-gold">Passengers Say</span>
-                </h2>
-                <p class="section-description">
-                    Hear from happy passengers across Abia State about their experience with the Green Shuttle and the impact of Governor Alex Otti's initiative.
-                </p>
+            <div class="section-header">
+                <div class="section-badge animate-from-top">PASSENGER FEEDBACK</div>
+                <h2 class="section-title animate-fade-in">What Passengers <span class="text-gradient-gold">Are Saying</span></h2>
+                <p class="section-description animate-fade-in">Hear from Abians who have experienced the revolutionary Green Shuttle service.</p>
             </div>
             
-            <!-- Testimonials Grid -->
             <div class="testimonials-grid">
-                <!-- Testimonial 1 -->
-                <div class="testimonial-card animate-left animate-on-scroll">
+                <div class="testimonial-card animate-zoom-in" style="transition-delay: 0.1s">
                     <div class="testimonial-content">
-                        "The Abia Green Shuttle has changed my life! As a student at Abia State University, I used to spend so much on transportation. Now I can attend classes daily without worrying about transport costs. Thank you, Governor Otti!"
+                        "The Green Shuttle has completely transformed my daily commute from Aba to Umuahia. The buses are clean, comfortable, and the fact that they're electric makes me proud of our state's commitment to the environment."
                     </div>
                     <div class="testimonial-author">
-                        <div class="author-avatar">C</div>
+                        <div class="author-avatar">CJ</div>
                         <div class="author-info">
-                            <h4>Uchendu Chinedu</h4>
-                            <p>Student, MOUAU</p>
+                            <h4>Chinedu James</h4>
+                            <p>Regular Commuter, Aba to Umuahia</p>
                             <div class="testimonial-rating">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -671,16 +2928,15 @@
                     </div>
                 </div>
                 
-                <!-- Testimonial 2 -->
-                <div class="testimonial-card animate-up animate-on-scroll" style="transition-delay: 0.1s">
+                <div class="testimonial-card animate-zoom-in" style="transition-delay: 0.2s">
                     <div class="testimonial-content">
-                        "I run a small business in Aba and travel to Umuahia regularly. The Green Shuttle has reduced my transportation expenses by 80%. The buses are clean, safe, and always on time. This is true governance!"
+                        "As a person with disability, I appreciate how accessible the buses are. The ramps make it easy for me to board, and the designated spaces are comfortable. This is true inclusive development."
                     </div>
                     <div class="testimonial-author">
-                        <div class="author-avatar">M</div>
+                        <div class="author-avatar">AO</div>
                         <div class="author-info">
-                            <h4>Micheal Onuoha</h4>
-                            <p>Business Owner, Aba</p>
+                            <h4>Amara Okonkwo</h4>
+                            <p>Passenger with Disability</p>
                             <div class="testimonial-rating">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -692,58 +2948,15 @@
                     </div>
                 </div>
                 
-                <!-- Testimonial 3 -->
-                <div class="testimonial-card animate-right animate-on-scroll" style="transition-delay: 0.2s">
+                <div class="testimonial-card animate-zoom-in" style="transition-delay: 0.3s">
                     <div class="testimonial-content">
-                        "As a civil servant, this free transportation means I can now save more money for my family. Governor Otti's initiative shows he truly cares about the welfare of Abians. The drivers are professional and courteous too."
+                        "The free service period was a blessing for my family. We saved so much on transportation costs during the holidays. I hope the fares remain affordable when payment begins."
                     </div>
                     <div class="testimonial-author">
-                        <div class="author-avatar">N</div>
+                        <div class="author-avatar">NE</div>
                         <div class="author-info">
                             <h4>Ngozi Eze</h4>
-                            <p>Civil Servant, Umuahia</p>
-                            <div class="testimonial-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Testimonial 4 -->
-                <div class="testimonial-card animate-left animate-on-scroll" style="transition-delay: 0.3s">
-                    <div class="testimonial-content">
-                        "The shuttle service has made it possible for me to visit my grandchildren in Ohafia regularly. At my age, I couldn't afford the transport fare before. God bless Governor Otti for remembering the elderly!"
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">O</div>
-                        <div class="author-info">
-                            <h4>Onyeka Nwankwo</h4>
-                            <p>Retired Teacher, 68</p>
-                            <div class="testimonial-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Testimonial 5 -->
-                <div class="testimonial-card animate-up animate-on-scroll" style="transition-delay: 0.4s">
-                    <div class="testimonial-content">
-                        "The Green Shuttle has reduced traffic congestion in Aba significantly. I've noticed cleaner air and less stress on our roads. This is sustainable development in action. Well done to the state government!"
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">A</div>
-                        <div class="author-info">
-                            <h4>Anyamele Nnebuihe</h4>
-                            <p>Environmental Activist</p>
+                            <p>Market Trader, Umuahia</p>
                             <div class="testimonial-rating">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -754,108 +2967,74 @@
                         </div>
                     </div>
                 </div>
-                
-                <!-- Testimonial 6 -->
-                <div class="testimonial-card animate-right animate-on-scroll" style="transition-delay: 0.5s">
-                    <div class="testimonial-content">
-                        "My market business has improved because customers can now travel from Umuahia to Aba easily. The free shuttle has increased foot traffic to my shop. This is economic empowerment for small businesses!"
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">P</div>
-                        <div class="author-info">
-                            <h4>Peace Okonkwo</h4>
-                            <p>Market Trader, Ariaria</p>
-                            <div class="testimonial-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
             
-            <!-- Impact Stats -->
-            <div class="testimonial-stats animate-on-scroll" style="transition-delay: 0.6s">
-                <div class="testimonial-stat-item">
+            <div class="testimonial-stats">
+                <div class="testimonial-stat-item animate-slide-left">
+                    <h3>94%</h3>
+                    <p>Passenger Satisfaction</p>
+                </div>
+                <div class="testimonial-stat-item animate-fade-in">
+                    <h3>10K+</h3>
+                    <p>Daily Passengers</p>
+                </div>
+                <div class="testimonial-stat-item animate-slide-right">
                     <h3>98%</h3>
-                    <p>Passenger Satisfaction Rate</p>
-                </div>
-                <div class="testimonial-stat-item">
-                    <h3>6K+</h3>
-                    <p>Daily Happy Passengers</p>
-                </div>
-                <div class="testimonial-stat-item">
-                    <h3>95%</h3>
                     <p>On-Time Performance</p>
                 </div>
             </div>
             
-            <!-- Governor Impact Note -->
-            <div class="governor-impact-note animate-on-scroll" style="transition-delay: 0.7s">
-                <h3>A Note on Governor Alex Otti's Impact</h3>
-                <p>
-                    These testimonials reflect the transformative impact of Governor Alex Chioma Otti's visionary leadership. 
-                    The Abia Green Shuttle is more than just a transportation project—it's a lifeline for students, 
-                    a business enabler for entrepreneurs, a relief for civil servants, and a testament to people-centered governance. 
-                    By investing in free public transportation, the Governor has demonstrated his commitment to improving the 
-                    quality of life for all Abians and building a more connected, prosperous state.
-                </p>
+            <div class="governor-impact-note animate-from-bottom">
+                <h3>Governor Otti's Vision in Action</h3>
+                <p>"The overwhelming positive response to the Green Shuttle initiative demonstrates that when government prioritizes innovation and sustainability, the people benefit directly. We're not just building transportation infrastructure; we're building a greener, more connected future for all Abians."</p>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact-section">
+    <section class="contact-section" id="contact">
         <div class="container">
-            <div class="section-header animate-on-scroll">
-                <span class="section-badge">Get in Touch</span>
-                <h2 class="section-title">
-                    Contact <span class="text-gradient-gold">Us</span>
-                </h2>
-                <p class="section-description">
-                    Have questions or feedback? We're here to help. Reach out to us through any of the channels below.
-                </p>
+            <div class="section-header">
+                <div class="section-badge animate-from-top">GET IN TOUCH</div>
+                <h2 class="section-title animate-fade-in">Contact <span class="text-gradient-gold">Information</span></h2>
+                <p class="section-description animate-fade-in">Have questions or feedback about the Abia Green Shuttle? Reach out to us through any of these channels.</p>
             </div>
             
             <div class="contact-grid">
-                <!-- Phone -->
-                <div class="contact-card animate-up animate-on-scroll">
+                <div class="contact-card animate-from-bottom" style="transition-delay: 0.1s">
                     <div class="contact-icon">
-                        <i class="fas fa-phone"></i>
+                        <i class="fas fa-phone-alt"></i>
                     </div>
-                    <h3>Call Us</h3>
-                    <p>Mon - Sat, 8AM - 6PM</p>
-                    <a href="tel:+2348001234567" class="contact-link">
-                        +234 800 123 4567
-                    </a>
+                    <h3>Call Center</h3>
+                    <p>For route information, schedules, and general inquiries</p>
+                    <a href="tel:07032270247" class="contact-link">0703 227 0247</a>
                 </div>
                 
-                <!-- Email -->
-                <div class="contact-card animate-up animate-on-scroll" style="transition-delay: 0.1s">
+                <div class="contact-card animate-from-bottom" style="transition-delay: 0.2s">
                     <div class="contact-icon">
                         <i class="fas fa-envelope"></i>
                     </div>
-                    <h3>Email Us</h3>
-                    <p>We'll respond within 24hrs</p>
-                    <a href="mailto:info@abiagreenshuttle.gov.ng" class="contact-link">
-                        info@abiagreenshuttle.gov.ng
-                    </a>
+                    <h3>Email Support</h3>
+                    <p>Send us your feedback, suggestions, or complaints</p>
+                    <a href="mailto:info@abiagreenshuttle.gov.ng" class="contact-link">info@abiagreenshuttle.gov.ng</a>
                 </div>
                 
-                <!-- Visit -->
-                <div class="contact-card animate-up animate-on-scroll" style="transition-delay: 0.2s">
+                <div class="contact-card animate-from-bottom" style="transition-delay: 0.3s">
                     <div class="contact-icon">
                         <i class="fas fa-map-marker-alt"></i>
                     </div>
-                    <h3>Visit Us</h3>
-                    <p>Headquarters Office</p>
-                    <span class="contact-link">Government House, Umuahia</span>
+                    <h3>Visit Terminals</h3>
+                    <p>Get information directly at any of our terminals</p>
+                    <span class="contact-link">Aba & Umuahia Terminals</span>
                 </div>
             </div>
-           
+            
+            <div class="government-link animate-fade-in">
+                <a href="https://abiastate.gov.ng" target="_blank">
+                    <i class="fas fa-external-link-alt"></i>
+                    Official Abia State Government Website
+                </a>
+            </div>
         </div>
     </section>
 
@@ -863,65 +3042,49 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <!-- Brand Column -->
-                <div class="footer-brand-column">
-                    <div class="footer-brand">
+                <div>
+                    <div class="footer-brand animate-fade-in">
                         <div class="footer-logo">
                             <i class="fas fa-bus"></i>
                         </div>
                         <div class="footer-brand-text">
-                            <h3>Abia Green Shuttle</h3>
-                            <p>Abia State Government</p>
+                            <h3>ABIA GREEN SHUTTLE</h3>
+                            <p>Nigeria's First Electric Public Transport</p>
                         </div>
                     </div>
-                    <p class="footer-description">
-                        Free public transportation serving the good people of Abia State. 
-                        Connecting communities, empowering lives, and building a better future together.
-                    </p>
-                    <!-- <div class="social-links">
-                        <a href="#" class="social-link" aria-label="Facebook">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="social-link" aria-label="Twitter">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="social-link" aria-label="Instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="social-link" aria-label="YouTube">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                    </div> -->
+                    <p class="footer-description animate-fade-in">A groundbreaking initiative by the Abia State Government under the leadership of Governor Alex Chioma Otti, OFR, providing sustainable, affordable, and modern public transportation.</p>
+                    <div class="social-links animate-fade-in">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
                 </div>
                 
-                <!-- Quick Links Column -->
-                <div class="footer-column">
-                    <h4>Quick Links</h4>
+                <div>
+                    <h4 class="animate-fade-in">Quick Links</h4>
                     <ul class="footer-links">
-                        <li><a href="#governor">Governor's Message</a></li>
-                        <li><a href="#routes">Routes</a></li>
-                        <li><a href="#schedule">Schedule</a></li>
-                        <li><a href="#terminals">Terminals</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#testimonials">Testimonials</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li class="animate-fade-in" style="transition-delay: 0.1s"><a href="#about">About the Initiative</a></li>
+                        <li class="animate-fade-in" style="transition-delay: 0.2s"><a href="#features">Bus Features</a></li>
+                        <li class="animate-fade-in" style="transition-delay: 0.3s"><a href="#routes">Routes & Schedule</a></li>
+                        <li class="animate-fade-in" style="transition-delay: 0.4s"><a href="#terminals">Terminals</a></li>
+                        <li class="animate-fade-in" style="transition-delay: 0.5s"><a href="#contact">Contact Us</a></li>
                     </ul>
                 </div>
                 
-                <!-- Contact Info Column -->
-                <div class="footer-column">
-                    <h4>Contact Info</h4>
+                <div>
+                    <h4 class="animate-fade-in">Important Info</h4>
                     <ul class="footer-links">
-                        <li>Government House, Umuahia</li>
-                        <li>Abia State, Nigeria</li>
-                        <li><a href="tel:+2348001234567">+234 800 123 4567</a></li>
-                        <li><a href="mailto:info@abiagreenshuttle.gov.ng">info@abiagreenshuttle.gov.ng</a></li>
+                        <li class="animate-fade-in" style="transition-delay: 0.1s"><a href="#">Fare Information</a></li>
+                        <li class="animate-fade-in" style="transition-delay: 0.2s"><a href="#">Accessibility Guide</a></li>
+                        <li class="animate-fade-in" style="transition-delay: 0.3s"><a href="#">Safety Guidelines</a></li>
+                        <li class="animate-fade-in" style="transition-delay: 0.4s"><a href="#">FAQs</a></li>
+                        <li class="animate-fade-in" style="transition-delay: 0.5s"><a href="#">Feedback Form</a></li>
                     </ul>
                 </div>
             </div>
             
-            <!-- Divider -->
-            <div class="footer-divider">
+           <div class="footer-divider">
                 <div class="footer-bottom">
                     <p>
                         © 2026 Abia Green Shuttle. An initiative of the Abia State Government under the leadership of His Excellency, Governor Alex Chioma Otti, OFR. All rights reserved.
@@ -932,17 +3095,110 @@
         </div>
     </footer>
 
-    <!-- Scroll to Top/Bottom Buttons -->
-    <div class="scroll-buttons">
-        <button class="scroll-button top" id="scrollToTop" aria-label="Scroll to top">
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        <button class="scroll-button bottom" id="scrollToBottom" aria-label="Scroll to bottom">
-            <i class="fas fa-arrow-down"></i>
-        </button>
-    </div>
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
 
-    <!-- JavaScript -->
-    <script src="script.js"></script>
+    <script>
+        // Mobile Navigation Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
+            mobileMenuBtn.innerHTML = mobileNav.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.mobile-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Scroll to Top Functionality
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
+        
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Enhanced Scroll animations
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.animate-fade-in, .animate-slide-left, .animate-slide-right, .animate-zoom-in, .animate-from-bottom, .animate-from-top');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.classList.add('visible');
+                }
+            });
+        };
+        
+        // Throttle scroll event for better performance
+        let isScrolling = false;
+        window.addEventListener('scroll', () => {
+            if (!isScrolling) {
+                window.requestAnimationFrame(() => {
+                    animateOnScroll();
+                    isScrolling = false;
+                });
+                isScrolling = true;
+            }
+        });
+        
+        window.addEventListener('load', animateOnScroll);
+        
+        // Initialize animations on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            animateOnScroll();
+        });
+        
+        // Add hover effect animations
+        document.querySelectorAll('.value-card, .feature-card, .route-card, .terminal-card, .testimonial-card, .contact-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
 </body>
 </html>
